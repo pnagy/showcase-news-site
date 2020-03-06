@@ -1,7 +1,8 @@
 import {
   FETCH_ARTICLES_REQUEST,
   FETCH_ARTICLES_SUCCESS,
-  FETCH_ARTICLES_ERROR
+  FETCH_ARTICLES_ERROR,
+  CHANGE_SEARCH_TERM
 } from './types'
 
 export const initialState = {
@@ -29,6 +30,10 @@ reducers[FETCH_ARTICLES_SUCCESS] = (state = initialState, { payload }) => {
 
 reducers[FETCH_ARTICLES_ERROR] = (state = initialState, { payload }) => {
   return { ...state, error: payload, articles: [], isLoading: false }
+}
+
+reducers[CHANGE_SEARCH_TERM] = (state = initialState, { payload }) => {
+  return { ...state, searchTerm: payload }
 }
 
 export default function reducer(state = {}, action) {

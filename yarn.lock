@@ -5670,6 +5670,11 @@ istanbul-reports@^2.2.6:
   dependencies:
     html-escaper "^2.0.0"
 
+javascript-debounce@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/javascript-debounce/-/javascript-debounce-1.0.1.tgz#bca6b6a99475927a39910d3ff70a67dce10c6462"
+  integrity sha512-3IkTDsqLkrOEfLjTl2rNvPDtjVriwRbWQ+KcKawXnYwqiZMjEwLTp+X8zzDkGONnKlH4gsorF0NHvowV1zhmsQ==
+
 jest-changed-files@^24.9.0:
   version "24.9.0"
   resolved "https://registry.yarnpkg.com/jest-changed-files/-/jest-changed-files-24.9.0.tgz#08d8c15eb79a7fa3fc98269bc14b451ee82f8039"

@@ -6,13 +6,9 @@ import {
   NavLink
 } from 'react-router-dom'
 import styled from '@emotion/styled'
-import { css } from '@emotion/core'
 
 import TopNews from 'components/pages/TopNews'
-
-const LinkActiveClass = css`
-  font-weight: bold;
-`
+import Search from 'components/pages/Search'
 
 const Container = styled('div')`
   max-width: 784px;
@@ -100,9 +96,13 @@ class App extends React.Component {
           </Menu>
           <Content>
             <Switch>
-              <Route path="/search">{/* <Search /> */}</Route>
+              <Route path="/search">
+                <Search />
+              </Route>
               <Route path="/categories">{/* <Categories /> */}</Route>
-              <Route path="/">{<TopNews />}</Route>
+              <Route path="/">
+                <TopNews />
+              </Route>
             </Switch>
           </Content>
         </Container>

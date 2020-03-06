@@ -10,9 +10,10 @@ export const selectArticles = createSelector(selectBase, news => {
 //   return category => news.articles.category || []
 // })
 
-export const selectSearchTerm = createSelector(selectBase, news => {
-  return news.searchTerm || ''
-})
+export const selectSearchTerm = createSelector(
+  selectBase,
+  news => news.searchTerm || ''
+)
 
 // export const selectCategories = createSelector(selectArticles, articles =>
 //   articles.reduce(
