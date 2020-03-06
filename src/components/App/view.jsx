@@ -1,23 +1,59 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  NavLink
+} from 'react-router-dom'
 import styled from '@emotion/styled'
+import { css } from '@emotion/core'
 
 import TopNews from 'components/pages/TopNews'
 
-const Container = styled('div')``
+const LinkActiveClass = css`
+  font-weight: bold;
+`
 
-const Menu = styled('div')``
+const Container = styled('div')`
+  max-width: 784px;
+  margin: auto;
+`
+
+const Menu = styled('div')`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+`
 
 const Content = styled('div')``
 
-const Navigation = styled('nav')``
+const Navigation = styled('nav')`
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+`
 
-const NavigationItem = styled(Link)``
+const NavigationItem = styled(NavLink)`
+  cursor: pointer;
+  color: black;
+  text-decoration: none;
+  font-size: 18px;
+  :hover {
+    text-decoration: underline;
+  }
+`
 
-const RegionSelector = styled('div')``
+const RegionSelector = styled('div')`
+  display: flex;
+  flex-direction: row;
+`
 
 const RegionItem = styled('div')`
-  ${props => props.active && 'text-decoration: underline'}
+  ${props => props.active && 'font-weight: bold;;'}
+  text-transform: uppercase;
+  padding: 4px;
+  cursor: pointer;
 `
 
 class App extends React.Component {
@@ -28,9 +64,27 @@ class App extends React.Component {
         <Container>
           <Menu>
             <Navigation>
-              <NavigationItem to="/">Top News</NavigationItem>
-              <NavigationItem to="/categories">Categories</NavigationItem>
-              <NavigationItem to="/search">Search</NavigationItem>
+              <NavigationItem
+                exact={true}
+                activeStyle={{ fontWeight: 'bold' }}
+                to="/"
+              >
+                Top News
+              </NavigationItem>
+              <NavigationItem
+                exact={true}
+                activeStyle={{ fontWeight: 'bold' }}
+                to="/categories"
+              >
+                Categories
+              </NavigationItem>
+              <NavigationItem
+                exact={true}
+                activeStyle={{ fontWeight: 'bold' }}
+                to="/search"
+              >
+                Search
+              </NavigationItem>
             </Navigation>
             <RegionSelector>
               {regions.map(region => (

@@ -5,7 +5,6 @@ import ArticlePreview from 'components/shared/ArticlePreview'
 
 const Container = styled('div')`
   display: flex;
-  padding: 16px;
   flex-wrap: wrap;
 `
 

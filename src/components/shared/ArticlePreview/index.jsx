@@ -4,13 +4,20 @@ import styled from '@emotion/styled'
 const Preview = styled('div')`
   display: flex;
   flex-direction: column;
-  max-width: 180px;
+  width: 180px;
   margin-right: 16px;
   margin-bottom: 16px;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  padding: 8px;
+  cursor: pointer;
+  :hover {
+    border-color: #efefef;
+  }
 `
 
 const Image = styled('img')`
-  max-width: 160px;
+  width: 100%;
   margin-bottom: 8px;
 `
 
