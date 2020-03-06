@@ -15,8 +15,8 @@ export default class TopNews extends React.Component {
     this.props.fetchArticles()
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.region.id !== nextProps.region.id) {
+  componentDidUpdate(prevProps) {
+    if (this.props.region.id !== prevProps.region.id) {
       this.props.fetchArticles()
     }
   }

@@ -15,7 +15,6 @@ export const doFetchArticles = () => (dispatch, getState) => {
 
   const region = selectCurrentRegionId(state)
   const term = selectSearchTerm(state)
-  console.log(term)
 
   const sourcesRequest = fetch(
     `http://newsapi.org/v2/sources?country=${region}&apiKey=${TOKEN}`

@@ -12,7 +12,7 @@ const Container = styled('div')`
 const ArticleList = ({ articles }) => (
   <Container>
     {articles.map(article => (
-      <ArticlePreview {...article} />
+      <ArticlePreview {...article} key={article.title} />
     ))}
   </Container>
 )
