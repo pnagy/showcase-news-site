@@ -20,6 +20,7 @@ const Menu = styled('div')`
   justify-content: space-between;
   align-items: center;
   height: 40px;
+  margin-bottom: 32px;
 `
 
 const Content = styled('div')``

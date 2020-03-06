@@ -25,7 +25,7 @@ export default class TopNews extends React.Component {
     const { articles, region, isLoading } = this.props
     return (
       <Container>
-        <h2>{`Top news from ${region.name}`}</h2>
+        <h1>{`Top news from ${region.name}`}</h1>
         {isLoading && <Loading />}
         {!isLoading && <ArticleList articles={articles} />}
       </Container>
