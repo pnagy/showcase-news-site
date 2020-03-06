@@ -3,7 +3,8 @@ import {
   doFetchArticles,
   doChangeSearchTerm,
   selectArticles,
-  selectSearchTerm
+  selectSearchTerm,
+  selectIsLoading
 } from 'ducks/news'
 import { selectCurrentRegion } from 'ducks/region'
 
@@ -13,7 +14,8 @@ const select = state => {
   return {
     articles: selectArticles(state),
     region: selectCurrentRegion(state),
-    searchTerm: selectSearchTerm(state)
+    searchTerm: selectSearchTerm(state),
+    isLoading: selectIsLoading(state)
   }
 }
 

@@ -6,6 +6,7 @@ import ArticlePreview from 'components/shared/ArticlePreview'
 const Container = styled('div')`
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
 `
 
 const ArticleList = ({ articles }) => (

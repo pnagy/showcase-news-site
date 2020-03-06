@@ -1,7 +1,9 @@
 import React from 'react'
 import debounce from 'javascript-debounce'
-import ArticleList from 'components/shared/ArticleList'
 import styled from '@emotion/styled'
+
+import ArticleList from 'components/shared/ArticleList'
+import Loading from 'components/shared/Loading'
 
 const SearchBox = styled('input')`
   width: 400px;
@@ -40,7 +42,7 @@ export default class Search extends React.Component {
   handleRefetch = debounce(() => this.props.fetchArticles(), 500)
 
   render() {
-    const { articles, searchTerm } = this.props
+    const { articles, searchTerm, isLoading } = this.props
     return (
       <Container>
         <SearchBox
@@ -49,7 +51,8 @@ export default class Search extends React.Component {
           onChange={this.handleSearchChange}
           placeholder="Search..."
         />
-        <ArticleList articles={articles} />
+        {isLoading && <Loading />}
+        {!isLoading && <ArticleList articles={articles} />}
       </Container>
     )
   }
