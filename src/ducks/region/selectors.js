@@ -2,6 +2,11 @@ import { createSelector } from 'reselect'
 
 const selectBase = state => state.region
 
+export const selectCurrentRegionId = createSelector(
+  selectBase,
+  region => region.region || 'us'
+)
+
 export const selectRegions = () => {
   return [
     {
@@ -16,6 +21,8 @@ export const selectRegions = () => {
 }
 
 export const selectCurrentRegion = createSelector(
-  selectBase,
-  region => region.region
+  selectRegions,
+  selectCurrentRegionId,
+  (regions, currentRegion) =>
+    regions.find(region => region.id === currentRegion)
 )

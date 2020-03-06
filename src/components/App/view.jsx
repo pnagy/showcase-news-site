@@ -2,6 +2,8 @@ import React from 'react'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import styled from '@emotion/styled'
 
+import TopNews from 'components/pages/TopNews'
+
 const Container = styled('div')``
 
 const Menu = styled('div')``
@@ -14,7 +16,9 @@ const NavigationItem = styled(Link)``
 
 const RegionSelector = styled('div')``
 
-const RegionItem = styled('div')``
+const RegionItem = styled('div')`
+  ${props => props.active && 'text-decoration: underline'}
+`
 
 class App extends React.Component {
   render() {
@@ -44,7 +48,7 @@ class App extends React.Component {
             <Switch>
               <Route path="/search">{/* <Search /> */}</Route>
               <Route path="/categories">{/* <Categories /> */}</Route>
-              <Route path="/">{/* <TopNews /> */}</Route>
+              <Route path="/">{<TopNews />}</Route>
             </Switch>
           </Content>
         </Container>

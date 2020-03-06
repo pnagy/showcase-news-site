@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import {
   doChangeRegion,
-  selectCurrentRegion,
+  selectCurrentRegionId,
   selectRegions
 } from 'ducks/region'
 // import { doFetchTopArticles, selectTopArticles } from 'ducks/news'
@@ -10,7 +10,7 @@ import View from './view'
 
 const select = state => {
   return {
-    currentRegion: selectCurrentRegion(state),
+    currentRegion: selectCurrentRegionId(state),
     regions: selectRegions(state)
   }
 }

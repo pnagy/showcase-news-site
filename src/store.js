@@ -3,7 +3,7 @@ import ReduxThunk from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 
 import { reducers as regionReducers } from 'ducks/region'
-// import { reducers as newsReducers } from 'ducks/news'
+import { reducers as newsReducers } from 'ducks/news'
 
 const middlewares = [
   ReduxThunk,
@@ -13,7 +13,8 @@ const middlewares = [
 ]
 
 const reducers = combineReducers({
-  region: regionReducers /* news: newsReducers  */
+  region: regionReducers,
+  news: newsReducers
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
