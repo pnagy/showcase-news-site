@@ -9,6 +9,7 @@ import styled from '@emotion/styled'
 
 import TopNews from 'components/pages/TopNews'
 import Search from 'components/pages/Search'
+import Article from 'components/pages/Article'
 
 const Container = styled('div')`
   max-width: 784px;
@@ -99,6 +100,9 @@ class App extends React.Component {
             <Switch>
               <Route path="/search">
                 <Search />
+              </Route>
+              <Route path="/article">
+                <Article />
               </Route>
               <Route path="/categories">{/* <Categories /> */}</Route>
               <Route path="/">

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from '@emotion/styled'
 
 import ArticlePreview from 'components/shared/ArticlePreview'
@@ -12,7 +13,9 @@ const Container = styled('div')`
 const ArticleList = ({ articles }) => (
   <Container>
     {articles.map(article => (
-      <ArticlePreview {...article} key={article.title} />
+      <Link to={{ pathname: '/article', state: { article } }}>
+        <ArticlePreview {...article} key={article.title} />
+      </Link>
     ))}
   </Container>
 )
