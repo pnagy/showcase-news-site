@@ -16,6 +16,8 @@ export const selectIsLoading = createSelector(
   news => news.isLoading
 )
 
+export const selectIsErrored = createSelector(selectBase, news => !!news.error)
+
 // export const selectArticlesByCategory = createSelector(selectBase, news => {
 //   return category => news.articles.category || []
 // })

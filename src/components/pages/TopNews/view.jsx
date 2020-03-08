@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 
 import ArticleList from 'components/shared/ArticleList'
 import Loading from 'components/shared/Loading'
+import Error from 'components/shared/Error'
 
 const Container = styled('div')`
   display: flex;
@@ -22,12 +23,13 @@ export default class TopNews extends React.Component {
   }
 
   render() {
-    const { articles, region, isLoading } = this.props
+    const { articles, region, isLoading, isErrored } = this.props
     return (
       <Container>
         <h1>{`Top news from ${region.name}`}</h1>
         {isLoading && <Loading />}
-        {!isLoading && <ArticleList articles={articles} />}
+        {!isLoading && isErrored && <Error />}
+        {!isLoading && !isErrored && <ArticleList articles={articles} />}
       </Container>
     )
   }

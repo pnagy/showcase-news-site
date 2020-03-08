@@ -4,7 +4,8 @@ import {
   doChangeSearchTerm,
   selectArticles,
   selectSearchTerm,
-  selectIsLoading
+  selectIsLoading,
+  selectIsErrored
 } from 'ducks/news'
 import { selectCurrentRegion } from 'ducks/region'
 
@@ -15,7 +16,8 @@ const select = state => {
     articles: selectArticles(state),
     region: selectCurrentRegion(state),
     searchTerm: selectSearchTerm(state),
-    isLoading: selectIsLoading(state)
+    isLoading: selectIsLoading(state),
+    isErrored: selectIsErrored(state)
   }
 }
 

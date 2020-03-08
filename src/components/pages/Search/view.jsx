@@ -4,6 +4,7 @@ import styled from '@emotion/styled'
 
 import ArticleList from 'components/shared/ArticleList'
 import Loading from 'components/shared/Loading'
+import Error from 'components/shared/Error'
 
 const SearchBox = styled('input')`
   width: 400px;
@@ -42,7 +43,7 @@ export default class Search extends React.Component {
   handleRefetch = debounce(() => this.props.fetchArticles(), 500)
 
   render() {
-    const { articles, searchTerm, isLoading } = this.props
+    const { articles, searchTerm, isLoading, isErrored } = this.props
     return (
       <Container>
         <SearchBox
@@ -52,7 +53,8 @@ export default class Search extends React.Component {
           placeholder="Search..."
         />
         {isLoading && <Loading />}
-        {!isLoading && <ArticleList articles={articles} />}
+        {!isLoading && isErrored && <Error />}
+        {!isLoading && !isErrored && <ArticleList articles={articles} />}
       </Container>
     )
   }
