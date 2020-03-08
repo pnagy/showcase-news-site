@@ -19,8 +19,11 @@ const Container = styled('div')`
 const ArticleList = ({ articles }) => (
   <Container>
     {articles.map(article => (
-      <Link to={{ pathname: '/article', state: { article } }}>
-        <ArticlePreview {...article} key={article.title} />
+      <Link
+        key={article.title}
+        to={{ pathname: '/article', state: { article } }}
+      >
+        <ArticlePreview {...article} />
       </Link>
     ))}
   </Container>
