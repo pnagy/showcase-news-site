@@ -4,6 +4,7 @@ import styled from '@emotion/styled'
 const Container = styled('div')`
   display: flex;
   flex-direction: column;
+  margin-bottom: 80px;
 `
 
 const Title = styled('div')`
@@ -21,7 +22,7 @@ const Content = styled('div')`
   font-size: 22px;
 `
 
-const FullArticle = ({ title, content, urlToImage }) => (
+const FullArticle = ({ article: { title, content, urlToImage } }) => (
   <Container>
     <Title>{title}</Title>
     <Image src={urlToImage} alt={title} />

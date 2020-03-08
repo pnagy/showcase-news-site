@@ -9,7 +9,7 @@ import { selectCurrentRegionId } from 'ducks/region'
 
 import { selectSearchTerm } from './selectors'
 
-const TOKEN = '057283ea582e4bb8b181e661925773db'
+const TOKEN = 'ebf413b020e2442180d50166e39a613c'
 
 export const doFetchArticles = () => (dispatch, getState) => {
   const state = getState()
