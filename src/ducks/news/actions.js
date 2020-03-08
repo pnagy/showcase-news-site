@@ -1,3 +1,4 @@
+import paginatedFetch from 'fetch-paginate'
 import {
   FETCH_ARTICLES_SUCCESS,
   FETCH_ARTICLES_REQUEST,
@@ -19,22 +20,26 @@ export const doFetchArticles = () => (dispatch, getState) => {
   const sourcesRequest = fetch(
     `http://newsapi.org/v2/sources?country=${region}&apiKey=${TOKEN}`
   )
-  const headlinesRequest = fetch(
-    `http://newsapi.org/v2/top-headlines?country=${region}&apiKey=${TOKEN}&q=${term}`
+  const headlinesRequest = paginatedFetch(
+    `http://newsapi.org/v2/top-headlines?country=${region}&apiKey=${TOKEN}&q=${term}`,
+    {
+      items: data => data.articles,
+      params: { page: 'page' }
+    }
   )
 
   dispatch({ type: FETCH_ARTICLES_REQUEST })
 
   return Promise.all([
     sourcesRequest.then(resp => resp.json()),
-    headlinesRequest.then(resp => resp.json())
+    headlinesRequest
   ])
     .then(data => {
       const [sourcesResponse, headlinesResponse] = data
       dispatch({
         type: FETCH_ARTICLES_SUCCESS,
         payload: {
-          articles: headlinesResponse.articles,
+          articles: headlinesResponse.data,
           sources: sourcesResponse.sources
         }
       })
