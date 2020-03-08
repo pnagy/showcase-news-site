@@ -8,6 +8,12 @@ const Container = styled('div')`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+  a:hover,
+  a:visited,
+  a:link,
+  a:active {
+    text-decoration: none;
+  }
 `
 
 const ArticleList = ({ articles }) => (

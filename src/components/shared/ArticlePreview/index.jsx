@@ -2,6 +2,7 @@ import React from 'react'
 import styled from '@emotion/styled'
 
 const Preview = styled('div')`
+  color: black;
   display: flex;
   flex-direction: column;
   width: 360px;
