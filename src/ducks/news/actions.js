@@ -19,7 +19,7 @@ import { selectCurrentRegionId } from 'ducks/region'
 import { selectSearchTerm } from './selectors'
 
 const fetchArticlesFromAPI = (params = {}) => {
-  const TOKEN = '7f301ebc881e4a53be47368574509106'
+  const TOKEN = '4afc5036e3f34260a23d46d6d1f15a69'
 
   const baseUrl = `http://newsapi.org/v2/top-headlines?apiKey=${TOKEN}`
 
@@ -49,16 +49,16 @@ export const doFetchArticles = () => (dispatch, getState) => {
       dispatch({
         type: FETCH_ARTICLES_SUCCESS,
         payload: {
-          articles: data
+          articles: data.articles || data
         }
       })
     )
-    .catch(err =>
+    .catch(err => {
       dispatch({
         type: FETCH_ARTICLES_ERROR,
         payload: err
       })
-    )
+    })
 }
 
 export const doSearchArticles = () => (dispatch, getState) => {
@@ -76,16 +76,16 @@ export const doSearchArticles = () => (dispatch, getState) => {
       dispatch({
         type: SEARCH_ARTICLES_SUCCESS,
         payload: {
-          articles: data
+          articles: data.articles || data
         }
       })
     )
-    .catch(err =>
+    .catch(err => {
       dispatch({
         type: SEARCH_ARTICLES_ERROR,
         payload: err
       })
-    )
+    })
 }
 export const doFetchArticlesByCategory = category => (dispatch, getState) => {
   const state = getState()
@@ -101,7 +101,7 @@ export const doFetchArticlesByCategory = category => (dispatch, getState) => {
       dispatch({
         type: FETCH_ARTICLES_BY_CATEGORY_SUCCESS,
         payload: {
-          [category]: data
+          [category]: data.articles || data
         }
       })
     )
@@ -148,7 +148,7 @@ export const doFetchTopArticlesByCategories = () => (dispatch, getState) => {
     .then(data =>
       dispatch({
         type: FETCH_TOP_ARTICLES_BY_CATEGORIES_SUCCESS,
-        payload: data
+        payload: data.articles || data
       })
     )
     .catch(err =>

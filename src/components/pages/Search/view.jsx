@@ -3,8 +3,7 @@ import debounce from 'javascript-debounce'
 import styled from '@emotion/styled'
 
 import ArticleList from 'components/shared/ArticleList'
-import Loading from 'components/shared/Loading'
-import Error from 'components/shared/Error'
+import LoadedState from 'components/shared/LoadedState'
 
 const SearchBox = styled('input')`
   width: 400px;
@@ -52,9 +51,9 @@ export default class Search extends React.Component {
           onChange={this.handleSearchChange}
           placeholder="Search..."
         />
-        {isLoading && <Loading />}
-        {!isLoading && isErrored && <Error />}
-        {!isLoading && !isErrored && <ArticleList articles={articles} />}
+        <LoadedState isLoading={isLoading} isErrored={isErrored}>
+          {<ArticleList articles={articles} />}
+        </LoadedState>
       </Container>
     )
   }

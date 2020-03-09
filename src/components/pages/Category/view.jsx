@@ -3,12 +3,12 @@ import styled from '@emotion/styled'
 
 import ArticleList from 'components/shared/ArticleList'
 import BackToList from 'components/shared/BackToList'
-import Loading from 'components/shared/Loading'
-import Error from 'components/shared/Error'
+import LoadedState from 'components/shared/LoadedState'
 
 const Container = styled('div')`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `
 
 export default class TopNews extends React.Component {
@@ -34,15 +34,17 @@ export default class TopNews extends React.Component {
       }
     } = this.props
     return (
-      <Container>
+      <React.Fragment>
         <BackToList onClick={history.goBack} />
-        <h1>{`Top ${category} news from ${region.name}`}</h1>
-        {isLoading && <Loading />}
-        {!isLoading && isErrored && <Error />}
-        {!isLoading && !isErrored && articlesByCategory[category] && (
-          <ArticleList articles={articlesByCategory[category]} />
-        )}
-      </Container>
+        <Container>
+          <h1>{`Top ${category} news from ${region.name}`}</h1>
+          <LoadedState isLoading={isLoading} isErrored={isErrored}>
+            {articlesByCategory[category] && (
+              <ArticleList articles={articlesByCategory[category]} />
+            )}
+          </LoadedState>
+        </Container>
+      </React.Fragment>
     )
   }
 }

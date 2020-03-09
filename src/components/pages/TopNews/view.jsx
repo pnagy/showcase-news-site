@@ -2,8 +2,7 @@ import React from 'react'
 import styled from '@emotion/styled'
 
 import ArticleList from 'components/shared/ArticleList'
-import Loading from 'components/shared/Loading'
-import Error from 'components/shared/Error'
+import LoadedState from 'components/shared/LoadedState'
 
 const Container = styled('div')`
   display: flex;
@@ -27,9 +26,9 @@ export default class TopNews extends React.Component {
     return (
       <Container>
         <h1>{`Top news from ${region.name}`}</h1>
-        {isLoading && <Loading />}
-        {!isLoading && isErrored && <Error />}
-        {!isLoading && !isErrored && <ArticleList articles={articles} />}
+        <LoadedState isLoading={isLoading} isErrored={isErrored}>
+          <ArticleList articles={articles} />
+        </LoadedState>
       </Container>
     )
   }

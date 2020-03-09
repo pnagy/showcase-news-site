@@ -23,12 +23,21 @@ reducers[types.FETCH_ARTICLES_REQUEST] = reducers[
 }
 
 reducers[types.FETCH_ARTICLES_ERROR] = reducers[
-  types.SEARCH_ARTICLES_ERROR
-] = reducers[types.FETCH_TOP_ARTICLES_BY_CATEGORIES_ERROR] = reducers[
-  types.FETCH_ARTICLES_BY_CATEGORY_ERROR
-] = (state = initialState, { payload }) => {
+  types.FETCH_TOP_ARTICLES_BY_CATEGORIES_ERROR
+] = reducers[types.FETCH_ARTICLES_BY_CATEGORY_ERROR] = (
+  state = initialState,
+  { payload }
+) => {
   return {
     ...initialState,
+    error: payload
+  }
+}
+
+reducers[types.SEARCH_ARTICLES_ERROR] = (state = initialState, { payload }) => {
+  return {
+    ...initialState,
+    searchTerm: state.searchTerm,
     error: payload
   }
 }

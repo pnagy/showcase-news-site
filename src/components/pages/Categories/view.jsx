@@ -4,6 +4,7 @@ import styled from '@emotion/styled'
 import CategoryPreview from 'components/shared/CategoryPreview'
 import Loading from 'components/shared/Loading'
 import Error from 'components/shared/Error'
+import LoadedState from '../../shared/LoadedState'
 
 const Container = styled('div')`
   display: flex;
@@ -24,20 +25,19 @@ export default class Categories extends React.Component {
 
   render() {
     const { articlesByCategories, region, isLoading, isErrored } = this.props
+    console.log({ articlesByCategories })
     return (
       <Container>
         <h1>{`Top 5 news by categories from ${region.name}`}</h1>
-        {isLoading && <Loading />}
-        {!isLoading && isErrored && <Error />}
-        {!isLoading &&
-          !isErrored &&
-          Object.keys(articlesByCategories).map(category => (
+        <LoadedState isLoading={isLoading} isErrored={isErrored}>
+          {Object.keys(articlesByCategories).map(category => (
             <CategoryPreview
               key={category}
               category={category}
-              articles={articlesByCategories[category]}
+              articles={articlesByCategories[category] || []}
             />
           ))}
+        </LoadedState>
       </Container>
     )
   }
