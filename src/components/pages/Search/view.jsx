@@ -42,7 +42,11 @@ export default class Search extends React.Component {
           placeholder="Search..."
         />
         <LoadedState isLoading={isLoading} isErrored={isErrored}>
-          {<ArticleList articles={articles} />}
+          {articles.length === 0 ? (
+            <h2>Sorry, no articles for this search.... :(( </h2>
+          ) : (
+            <ArticleList articles={articles} />
+          )}
         </LoadedState>
       </Container>
     )
