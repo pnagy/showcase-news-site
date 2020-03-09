@@ -7,6 +7,7 @@ import TopNews from 'components/pages/TopNews'
 import Categories from 'components/pages/Categories'
 import Search from 'components/pages/Search'
 import Article from 'components/pages/Article'
+import Category from 'components/pages/Category'
 
 const Container = styled('div')`
   max-width: 784px;
@@ -30,6 +31,9 @@ const App = () => {
             </Route>
             <Route path="/categories">
               <Categories />
+            </Route>
+            <Route path="/category">
+              <Category />
             </Route>
             <Route path="/">
               <TopNews />

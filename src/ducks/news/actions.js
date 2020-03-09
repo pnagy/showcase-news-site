@@ -101,7 +101,7 @@ export const doFetchArticlesByCategory = category => (dispatch, getState) => {
       dispatch({
         type: FETCH_ARTICLES_BY_CATEGORY_SUCCESS,
         payload: {
-          articles: data
+          [category]: data
         }
       })
     )
