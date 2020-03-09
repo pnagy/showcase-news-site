@@ -10,26 +10,13 @@ const Container = styled('div')`
   flex-direction: column;
 `
 
-export default class TopNews extends React.Component {
-  componentDidMount() {
-    this.props.load()
-  }
+const TopNews = ({ articles, region, isLoading, isErrored }) => (
+  <Container>
+    <h1>{`Top news from ${region.name}`}</h1>
+    <LoadedState isLoading={isLoading} isErrored={isErrored}>
+      <ArticleList articles={articles} />
+    </LoadedState>
+  </Container>
+)
 
-  componentDidUpdate(prevProps) {
-    if (this.props.region.id !== prevProps.region.id) {
-      this.props.load()
-    }
-  }
-
-  render() {
-    const { articles, region, isLoading, isErrored } = this.props
-    return (
-      <Container>
-        <h1>{`Top news from ${region.name}`}</h1>
-        <LoadedState isLoading={isLoading} isErrored={isErrored}>
-          <ArticleList articles={articles} />
-        </LoadedState>
-      </Container>
-    )
-  }
-}
+export default TopNews

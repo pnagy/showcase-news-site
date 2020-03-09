@@ -7,6 +7,8 @@ import {
 } from 'ducks/news'
 import { selectCurrentRegion } from 'ducks/region'
 
+import withRegionChangeListener from 'components/shared/withRegionChangeListener'
+
 import View from './view'
 import { withRouter } from 'react-router-dom'
 
@@ -21,13 +23,14 @@ const select = state => {
 
 const perform = (dispatch, ownProps) => {
   const {
-    location: {
-      state: { category }
-    }
+    location: { state }
   } = ownProps
+  if (!state || !state.category) return {}
   return {
-    load: () => dispatch(doFetchArticlesByCategory(category))
+    load: () => dispatch(doFetchArticlesByCategory(state.category))
   }
 }
 
-export default withRouter(connect(select, perform)(View))
+export default withRouter(
+  connect(select, perform)(withRegionChangeListener(View))
+)

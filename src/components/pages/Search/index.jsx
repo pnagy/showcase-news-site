@@ -9,6 +9,8 @@ import {
 } from 'ducks/news'
 import { selectCurrentRegion } from 'ducks/region'
 
+import withRegionChangeListener from 'components/shared/withRegionChangeListener'
+
 import View from './view'
 
 const select = state => {
@@ -26,4 +28,4 @@ const perform = {
   onSearchChange: doChangeSearchTerm
 }
 
-export default connect(select, perform)(View)
+export default connect(select, perform)(withRegionChangeListener(View))

@@ -20,16 +20,6 @@ const Container = styled('div')`
 `
 
 export default class Search extends React.Component {
-  componentDidMount() {
-    this.props.load()
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.region.id !== prevProps.region.id) {
-      this.props.load()
-    }
-  }
-
   componentWillUnmount() {
     this.props.onSearchChange('')
   }
