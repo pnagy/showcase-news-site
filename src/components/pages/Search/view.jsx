@@ -22,12 +22,12 @@ const Container = styled('div')`
 
 export default class Search extends React.Component {
   componentDidMount() {
-    this.props.fetchArticles()
+    this.props.load()
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.region.id !== prevProps.region.id) {
-      this.props.fetchArticles()
+      this.props.load()
     }
   }
 
@@ -40,7 +40,7 @@ export default class Search extends React.Component {
     this.handleRefetch()
   }
 
-  handleRefetch = debounce(() => this.props.fetchArticles(), 500)
+  handleRefetch = debounce(() => this.props.load(), 500)
 
   render() {
     const { articles, searchTerm, isLoading, isErrored } = this.props

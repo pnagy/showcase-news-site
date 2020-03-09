@@ -23,13 +23,20 @@ export default class TopNews extends React.Component {
   }
 
   render() {
-    const { articles, region, isLoading, isErrored } = this.props
+    const { articles = [], region, isLoading, isErrored } = this.props
     return (
       <Container>
-        <h1>{`Top news from ${region.name}`}</h1>
+        <h1>{`Top 5 news by categories from ${region.name}`}</h1>
         {isLoading && <Loading />}
         {!isLoading && isErrored && <Error />}
-        {!isLoading && !isErrored && <ArticleList articles={articles} />}
+        {!isLoading &&
+          !isErrored &&
+          Object.keys(articles).map(category => (
+            <React.Fragment>
+              <h3>{category}</h3>
+              <ArticleList articles={articles.category}></ArticleList>
+            </React.Fragment>
+          ))}
       </Container>
     )
   }

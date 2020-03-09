@@ -1,9 +1,4 @@
-import {
-  FETCH_ARTICLES_REQUEST,
-  FETCH_ARTICLES_SUCCESS,
-  FETCH_ARTICLES_ERROR,
-  CHANGE_SEARCH_TERM
-} from './types'
+import * as types from './types'
 
 export const initialState = {
   searchTerm: '',
@@ -14,25 +9,30 @@ export const initialState = {
 
 const reducers = {}
 
-reducers[FETCH_ARTICLES_REQUEST] = (state = initialState, { payload }) => {
+reducers[types.FETCH_ARTICLES_REQUEST] = reducers[
+  types.SEARCH_ARTICLES_REQUEST
+] = reducers[types.FETCH_TOP_ARTICLES_BY_CATEGORIES_REQUEST] = reducers[
+  types.FETCH_ARTICLES_BY_CATEGORY_REQUEST
+] = (state = initialState) => {
   return { ...state, isLoading: true, articles: [] }
 }
 
-reducers[FETCH_ARTICLES_SUCCESS] = (state = initialState, { payload }) => {
-  const { articles, sources } = payload
-  const extendedArticles = articles.map(article => {
-    const source = sources.find(source => source.id === article.source.id)
-    if (!source) return article
-    return { ...article, category: source.category }
-  })
-  return { ...state, articles: extendedArticles, isLoading: false }
-}
-
-reducers[FETCH_ARTICLES_ERROR] = (state = initialState, { payload }) => {
+reducers[types.FETCH_ARTICLES_ERROR] = reducers[
+  types.SEARCH_ARTICLES_ERROR
+] = reducers[types.FETCH_TOP_ARTICLES_BY_CATEGORIES_ERROR] = reducers[
+  types.FETCH_ARTICLES_BY_CATEGORY_ERROR
+] = (state = initialState, { payload }) => {
   return { ...state, error: payload, articles: [], isLoading: false }
 }
 
-reducers[CHANGE_SEARCH_TERM] = (state = initialState, { payload }) => {
+reducers[types.FETCH_ARTICLES_SUCCESS] = reducers[
+  types.SEARCH_ARTICLES_SUCCESS
+] = (state = initialState, { payload }) => {
+  const { articles } = payload
+  return { ...state, articles, isLoading: false }
+}
+
+reducers[types.CHANGE_SEARCH_TERM] = (state = initialState, { payload }) => {
   return { ...state, searchTerm: payload }
 }
 

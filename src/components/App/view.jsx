@@ -4,6 +4,7 @@ import styled from '@emotion/styled'
 
 import Menu from 'components/Menu'
 import TopNews from 'components/pages/TopNews'
+import Categories from 'components/pages/Categories'
 import Search from 'components/pages/Search'
 import Article from 'components/pages/Article'
 
@@ -27,7 +28,9 @@ const App = () => {
             <Route path="/article">
               <Article />
             </Route>
-            <Route path="/categories">{/* <Categories /> */}</Route>
+            <Route path="/categories">
+              <Categories />
+            </Route>
             <Route path="/">
               <TopNews />
             </Route>

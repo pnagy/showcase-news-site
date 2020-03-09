@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import {
-  doFetchArticles,
+  doSearchArticles,
   doChangeSearchTerm,
   selectArticles,
   selectSearchTerm,
@@ -22,7 +22,7 @@ const select = state => {
 }
 
 const perform = {
-  fetchArticles: doFetchArticles,
+  load: doSearchArticles,
   onSearchChange: doChangeSearchTerm
 }
 
