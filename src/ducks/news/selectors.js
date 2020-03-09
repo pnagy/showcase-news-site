@@ -18,15 +18,7 @@ export const selectIsLoading = createSelector(
 
 export const selectIsErrored = createSelector(selectBase, news => !!news.error)
 
-// export const selectArticlesByCategory = createSelector(selectBase, news => {
-//   return category => news.articles.category || []
-// })
-// export const selectCategories = createSelector(selectArticles, articles =>
-//   articles.reduce(
-//     (categories, article) =>
-//       categories.includes(article.category)
-//         ? categories
-//         : [...categories, article.category],
-//     []
-//   )
-// )
+export const selectArticlesByCategories = createSelector(
+  selectBase,
+  news => news.articlesByCategory || {}
+)

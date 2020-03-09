@@ -1,8 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from '@emotion/styled'
 
-const Preview = styled('div')`
-  color: black;
+const Preview = styled(Link)`
+  text-decoration: none;
+  color: inherit;
   display: flex;
   flex-direction: column;
   width: 360px;
@@ -30,12 +32,18 @@ const Image = styled('img')`
 
 const Description = styled('div')``
 
-const ArticlePreview = ({ description, urlToImage, title }) => (
-  <Preview>
-    <Title>{title}</Title>
-    <Image src={urlToImage} alt={title} />
-    <Description>{description}</Description>
-  </Preview>
-)
+const ArticlePreview = ({ article, className }) => {
+  const { description, urlToImage, title } = article
+  return (
+    <Preview
+      to={{ pathname: '/article', state: { article } }}
+      className={className}
+    >
+      <Title>{title}</Title>
+      <Image src={urlToImage} alt={title} />
+      <Description>{description}</Description>
+    </Preview>
+  )
+}
 
 export default ArticlePreview

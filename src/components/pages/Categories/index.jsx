@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import {
-  doFetchArticlesByCategory,
-  //   selectArticlesByCategory,
+  doFetchTopArticlesByCategories,
+  selectArticlesByCategories,
   selectIsLoading,
   selectIsErrored
 } from 'ducks/news'
@@ -11,7 +11,7 @@ import View from './view'
 
 const select = state => {
   return {
-    // articles: selectArticlesByCategory(state),
+    articlesByCategories: selectArticlesByCategories(state),
     region: selectCurrentRegion(state),
     isLoading: selectIsLoading(state),
     isErrored: selectIsErrored(state)
@@ -19,7 +19,7 @@ const select = state => {
 }
 
 const perform = {
-  load: doFetchArticlesByCategory
+  load: doFetchTopArticlesByCategories
 }
 
 export default connect(select, perform)(View)

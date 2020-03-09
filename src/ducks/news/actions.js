@@ -19,18 +19,23 @@ import { selectCurrentRegionId } from 'ducks/region'
 import { selectSearchTerm } from './selectors'
 
 const fetchArticlesFromAPI = (params = {}) => {
-  const TOKEN = 'ebf413b020e2442180d50166e39a613c'
+  const TOKEN = '7f301ebc881e4a53be47368574509106'
 
-  const url = `http://newsapi.org/v2/top-headlines?apiKey=${TOKEN}`
+  const baseUrl = `http://newsapi.org/v2/top-headlines?apiKey=${TOKEN}`
 
   const query = Object.keys(params)
     .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
     .join('&')
 
-  return paginatedFetch(`${url}&${query}`, {
-    items: data => data.articles,
-    params: { page: 'page' }
-  }).then(response => response.data)
+  const url = `${baseUrl}&${query}`
+  return params.pageSize
+    ? fetch(url)
+        .then(response => response.json())
+        .then(data => data.articles)
+    : paginatedFetch(url, {
+        items: data => data.articles,
+        params: { page: 'page' }
+      }).then(response => response.data)
 }
 
 export const doFetchArticles = () => (dispatch, getState) => {
@@ -111,7 +116,6 @@ export const doFetchArticlesByCategory = category => (dispatch, getState) => {
 export const doFetchTopArticlesByCategories = () => (dispatch, getState) => {
   const state = getState()
   const country = selectCurrentRegionId(state)
-  const limit = 5
   const categories = [
     'business',
     'entertainment',
@@ -129,7 +133,7 @@ export const doFetchTopArticlesByCategories = () => (dispatch, getState) => {
 
   return Promise.all(
     categories.map(category =>
-      fetchArticlesFromAPI({ country, category, limit })
+      fetchArticlesFromAPI({ country, category, pageSize: 5, page: 1 })
     )
   )
     .then(articlesByCategory =>

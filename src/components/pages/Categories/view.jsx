@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 
-import ArticleList from 'components/shared/ArticleList'
+import CategoryPreview from 'components/shared/CategoryPreview'
 import Loading from 'components/shared/Loading'
 import Error from 'components/shared/Error'
 
@@ -11,7 +11,7 @@ const Container = styled('div')`
   flex-direction: column;
 `
 
-export default class TopNews extends React.Component {
+export default class Categories extends React.Component {
   componentDidMount() {
     this.props.load()
   }
@@ -23,7 +23,7 @@ export default class TopNews extends React.Component {
   }
 
   render() {
-    const { articles = [], region, isLoading, isErrored } = this.props
+    const { articlesByCategories, region, isLoading, isErrored } = this.props
     return (
       <Container>
         <h1>{`Top 5 news by categories from ${region.name}`}</h1>
@@ -31,11 +31,12 @@ export default class TopNews extends React.Component {
         {!isLoading && isErrored && <Error />}
         {!isLoading &&
           !isErrored &&
-          Object.keys(articles).map(category => (
-            <React.Fragment>
-              <h3>{category}</h3>
-              <ArticleList articles={articles.category}></ArticleList>
-            </React.Fragment>
+          Object.keys(articlesByCategories).map(category => (
+            <CategoryPreview
+              key={category}
+              category={category}
+              articles={articlesByCategories[category]}
+            />
           ))}
       </Container>
     )
